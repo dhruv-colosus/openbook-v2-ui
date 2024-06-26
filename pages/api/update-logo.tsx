@@ -18,8 +18,18 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
       if (err) {
         return res.status(500).json({ message: "Error parsing form data" });
       }
+      console.log("Parsed form data files:", files.file);
 
-      const file = files.file as File;
+      const file = Array.isArray(files.file) ? files.file[0] : files.file;
+      if (!file) {
+        console.log("No file in request");
+        return res.status(400).json({ message: "No file uploaded" });
+      }
+
+      if (!file.filepath) {
+        console.log("File object has no filepath:", file);
+        return res.status(400).json({ message: "Invalid file object" });
+      }
 
       // Ensure file is defined and extract the path correctly
       if (!file || !file.filepath) {
