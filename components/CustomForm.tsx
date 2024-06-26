@@ -1,6 +1,5 @@
 // components/ColorForm.js
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
 const CustomForm = () => {
   const [formData, setFormData] = useState({
     mainBg: "",
@@ -98,11 +97,11 @@ const CustomForm = () => {
   const [activeTab, setActiveTab] = useState("colors");
 
   return (
-    <div className="flex">
-      <div className="w-1/5 py-8 px-2  font-semibold">
+    <div className="flex flex-col md:flex-row">
+      <div className="flex md:flex-col  md:w-1/5 py-8 px-2  font-semibold">
         <button
           onClick={() => setActiveTab("colors")}
-          className={`flex w-full py-4 px-4 mb-4  rounded-lg justify-between ${
+          className={`flex w-full py-4 px-4 mb-4  rounded-lg justify-between colors-button ${
             activeTab === "colors"
               ? "text-hover-two  bg-hover-one "
               : "text-main-text bg-secondary-bg"
@@ -113,7 +112,7 @@ const CustomForm = () => {
         </button>
         <button
           onClick={() => setActiveTab("logo")}
-          className={`flex w-full py-4 px-4 mb-4  rounded-lg justify-between ${
+          className={`flex w-full py-4 px-4 mb-4  rounded-lg justify-between logo-button ${
             activeTab === "logo"
               ? "text-hover-two  bg-hover-one "
               : "text-main-text bg-secondary-bg"
@@ -124,7 +123,7 @@ const CustomForm = () => {
         </button>
         <button
           onClick={() => setActiveTab("rpc")}
-          className={`flex w-full py-4 px-4 mb-4  rounded-lg justify-between ${
+          className={`flex w-full py-4 px-4 mb-4  rounded-lg justify-between rpc-button ${
             activeTab === "rpc"
               ? "text-hover-two  bg-hover-one "
               : "text-main-text bg-secondary-bg"
